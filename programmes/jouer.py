@@ -46,7 +46,7 @@ def jouer(g, j, c):
             c = int(c)
     return "\n"
 
-print(jouer(g, 2, 0))
+#print(jouer(g, 2, 0))
 
 def jeu(g, j, c):
     while True:
