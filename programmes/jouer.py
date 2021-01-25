@@ -46,4 +46,34 @@ def jouer(g, j, c):
             c = int(c)
     return "\n"
 
-print(jouer(g, 1, 0))
+print(jouer(g, 2, 0))
+
+def jeu(g, j, c):
+    while True:
+        c = input("Choisissez une colonne ")
+        c = int(c)
+        c-=1
+        tour_fini=0
+        if j == 1:
+            j=2
+        else:
+            j=1
+        while tour_fini == 0:
+            if coup_possible(g, c) == True:
+                temp=0
+                for i in range(6):
+                    if g[i][c] == 0:
+                        g[i][c] = j
+                        if temp != 0:
+                            g[temp+-1][c] = 0
+                        print("\n")
+                        affiche(g)
+                        time.sleep(0.3)
+                    temp+=1
+                tour_fini=1
+            else:
+                c = input()
+                c = int(c)
+        print("\n")
+
+print(jeu(g, 2, 0))
