@@ -1,5 +1,3 @@
-
-
 def grille_vide(symbole):
     for i in range(6):
         print("I", end="")
