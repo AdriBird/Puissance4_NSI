@@ -1,3 +1,5 @@
+import time
+
 g=[[0 for i in range(7)]for j in range(6)]
 
 def affiche(g):
@@ -34,12 +36,14 @@ def jouer(g, j, c):
                     g[i][c] = j
                     if temp != 0:
                         g[temp+-1][c] = 0
-                    affiche(g)
                     print("\n")
+                    affiche(g)
+                    time.sleep(0.3)
                 temp+=1
             tour_fini=1
         else:
             c = input()
             c = int(c)
+    return "\n"
 
 print(jouer(g, 1, 0))
