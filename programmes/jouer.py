@@ -26,7 +26,7 @@ def coup_possible(g, c):
             return veredict
     return veredict
 
-def jouer(g, j, c):
+def joueralpha(g, j, c):
     tour_fini=0
     while tour_fini == 0:
         if coup_possible(g, c) == True:
@@ -37,7 +37,6 @@ def jouer(g, j, c):
                     if temp != 0:
                         g[temp+-1][c] = 0
                     print("\n")
-                    affiche(g)
                     time.sleep(0.3)
                 temp+=1
             tour_fini=1
@@ -46,13 +45,12 @@ def jouer(g, j, c):
             c = int(c)
     return "\n"
 
-#print(jouer(g, 2, 0))
+#print(joueralpha(g, 2, 0))
 
-def jeu(g, j, c):
+def jouer(g, j, c):
     while True:
         c = input("Choisissez une colonne ")
         c = int(c)
-        c-=1
         tour_fini=0
         if j == 1:
             j=2
@@ -60,6 +58,7 @@ def jeu(g, j, c):
             j=1
         while tour_fini == 0:
             if coup_possible(g, c) == True:
+                c-=1
                 temp=0
                 for i in range(6):
                     if g[i][c] == 0:
@@ -72,8 +71,8 @@ def jeu(g, j, c):
                     temp+=1
                 tour_fini=1
             else:
-                c = input()
+                c = input("Choisissez une colonne ")
                 c = int(c)
         print("\n")
 
-print(jeu(g, 2, 0))
+print(jouer(g, 2, 0))
