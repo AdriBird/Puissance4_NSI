@@ -31,26 +31,25 @@ def joueralpha(g, j, c):
     while tour_fini == 0:
         if coup_possible(g, c) == True:
             temp=0
-            for i in range(6):
-                if g[i][c] == 0:
-                    g[i][c] = j
+            for l in range(6):
+                if g[l][c] == 0:
+                    g[l][c] = j
                     if temp != 0:
                         g[temp+-1][c] = 0
                     print("\n")
+                    affiche(g)
                     time.sleep(0.3)
                 temp+=1
             tour_fini=1
         else:
-            c = input()
-            c = int(c)
+            int(input("Choisissez une colonne "))
     return "\n"
 
 #print(joueralpha(g, 2, 0))
 
 def jouer(g, j, c):
     while True:
-        c = input("Choisissez une colonne ")
-        c = int(c)
+        int(input("Choisissez une colonne "))
         tour_fini=0
         if j == 1:
             j=2
@@ -60,9 +59,9 @@ def jouer(g, j, c):
             if coup_possible(g, c) == True:
                 c-=1
                 temp=0
-                for i in range(6):
-                    if g[i][c] == 0:
-                        g[i][c] = j
+                for l in range(6):
+                    if g[l][c] == 0:
+                        g[l][c] = j
                         if temp != 0:
                             g[temp+-1][c] = 0
                         print("\n")
@@ -71,8 +70,7 @@ def jouer(g, j, c):
                     temp+=1
                 tour_fini=1
             else:
-                c = input("Choisissez une colonne ")
-                c = int(c)
+                c = int(input("Choisissez une colonne "))
         print("\n")
 
 print(jouer(g, 2, 0))
