@@ -37,3 +37,16 @@ def vertic(g, j, l, c):
             if verif_j2 == 4:
                 victoire(g, 2)
 
+
+
+def diag(g, j, l, c):
+    '''
+    En gros il faut faire deux boucles: la grande boucle elle agit sur les lignes et la deuxième boucle
+    agit sur les colonnes, si l'index des colonnes est inferieur à 3 elle va être croissante et si elle est
+    supérieur à 3 elle est décroissante et si elle est égale à 3 elle est les deux
+    '''
+    verif_j1 = 0
+    verif_j2 = 0
+    for i in range(5):
+        for j in range(5):
+            if g[j+i][j+i]
