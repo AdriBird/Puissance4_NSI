@@ -159,4 +159,3 @@ def jeufinalbot():
                 return "Vous avez perdu"
             else:
                 return "Vous avez gagné"
-
