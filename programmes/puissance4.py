@@ -70,7 +70,19 @@ def jouer(g, j, c):
 
 
 
+def victoire(g,j):
+    if horiz(g,j,l,c)==True or vertic(g,j,l,c)==True or diag(g,j,l,c)==True:
+        return True
+    else:
+        return False
 
+
+def match_nul(g):
+    for m in range(7):
+        if g[0][m]==0:
+            return False
+    print("Match nul .Serrez vous la main mais en fait non parce que c'est pas très covid mdr.")
+    return True
 
 
 
@@ -85,4 +97,3 @@ def jeufinalbot():
     affiche(g)
     c = int(input("Choisissez une colonne: "))
     j = 1
-    
