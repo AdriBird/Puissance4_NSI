@@ -59,8 +59,6 @@ def jouer(g, j, c):
                     time.sleep(0.3)
                 temp+=1
             tour_fini=1
-        else:
-            c = int(input("Choisissez une colonne "))
     print("\n")
     if j == 1:
         j=2
@@ -142,13 +140,18 @@ def coup_aleatoire(g, j):
 def jeufinalbot():
     grille_vide()
     affiche(g)
-    c = int(input("Choisissez une colonne: "))
-    j = 1
+    j = random.randint(1,2)
+    l = 0
     while True:
+        if j == 2:
+            coup_possible(g, c)
+        else:
+            coupaccepte=False
+            while coupaccepte == False:
+                c = int(input("Choisissez une colonne: "))
+                if coup_possible(g, c) == True:
+                    coupaccepte = True
         jouer(g, j, c)
-        horiz(g, j, l, c)
-        vertic(g, j, l, c)
-        diag(g, j, l, c)
         if match_nul(g) == True:
             affiche(g)
             print("\n")
@@ -159,3 +162,4 @@ def jeufinalbot():
                 return "Vous avez perdu"
             else:
                 return "Vous avez gagné"
+        
