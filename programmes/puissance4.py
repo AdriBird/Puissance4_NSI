@@ -12,14 +12,22 @@
 
 import random
 import time
+from typing import Callable
 
 
 def grille_vide():
+    '''
+Fonction qui renvoie un tableau g à 2 dimensions plein de 0
+'''
     g=[[0 for i in range(7)]for j in range(6)]
     return g
 
 
 def affiche(g):
+    '''
+    Fonction qui prend en argument la grille
+    et choisit l'affichage des pions en fonction du joueur.
+    '''
     for i in range(6):
         ligne=""
         for j in range(7):
@@ -35,16 +43,22 @@ def affiche(g):
 
 
 def coup_possible(g, c):
+    '''
+    Fonction qui prend en argument la grille et la colonne choisie
+    et renvoie True s'il y a de l'espace dans la colonne, sinon elle renvoie False.
+    '''
     c -= 1
-    veredict = False
     for i in range(5, -1, -1):
         if g[i][c] == 0:
-            veredict = True
-            return veredict
-    return veredict
+            return True
+    return False
 
 
 def jouer(g, j, c):
+    '''
+    Fonction qui prend en argument la grille, le joueur et la colonne choisie
+    et qui fait jouer un coup à ce joueur, en modifiant la grille g et affichant une animation de chute.
+    '''    
     tour_fini=0
     while tour_fini == 0:
         if coup_possible(g, c) == True:
@@ -67,11 +81,47 @@ def jouer(g, j, c):
         j=1
 
 
+def vertic(g, j, l, c):
+    '''
+    Fonction qui prend en argumentla grille et le joueur qui joue et vérifie dans tout le tableau
+    s'il y a 4 symboles identiques alignés à la verticale et renvoie True si c'est le cas, sinon False.
+    '''
+    allignement = 0
+    for i in range(6):
+        if g[i][c] == j:
+            allignement += 1
+        else:
+            allignement = 0
+        if allignement == 4:
+            return True
+    return False
+
+
 def horiz(g, j, l, c):
+    '''
+    Fonction qui prend en argument la grille et le joueur qui joue et vérifie dans tout le tableau 
+    s'il y a 4 symboles identiques alignés à l'horizontale et renvoie True si c'est le cas, sinon False.
+    '''
+    allignement = 0
+    for i in range(7):
+        if g[l][i] == j:
+            allignement += 1
+        else:
+            allignement = 0
+        if allignement == 4:
+            return True
+    return False
+
+
+def horiz(g, j, l, c):
+    '''
+    Fonction qui prend en argument la grille et le joueur qui joue et vérifie dans tout le tableau 
+    s'il y a 4 symboles identiques alignés à l'horizontale et renvoie True si c'est le cas, sinon False.
+    '''
     verif_j1 = 0
     verif_j2 = 0
     for l in range(6):
-        for c in range(2):
+        for c in range(7):
             if g[l][c] == 1:
                 verif_j2 = 0
                 verif_j1 += 1
@@ -111,24 +161,33 @@ def vertic(g, j, l, c):
 
 
 def victoire(g, j):
-    l = 0
-    c = 0
-    if horiz(g, j, l, c)==True or vertic(g, j , l , c)==True:
+    '''
+    Fonction qui renvoie un booléen si un joueur a gagné.
+    '''
+    if quatrehoriz == True or quatrevertic == True or quatrediag == True:
         print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
+        affiche(g)
         return True
-    else:
-        return False
+    return False
 
 
 def match_nul(g):
+    '''
+    Fonction qui prend en argument la grille
+    et renvoie True s'il y a un match nul.
+    '''
     for m in range(7):
         if g[0][m]==0:
             return False
-    print("Match nul .Serrez vous la main mais en fait non parce que c'est pas très covid mdr. \n")
+    print("Match nul. \n")
     return True
 
 
 def coup_aleatoire(g, j):
+    '''
+    Fonction qui prend en argument la grille et le joueur qui joue
+    et choisit une colonne aléatoire pour que le bot la joue.
+    '''
     while True:
         c = random.randint(0, 6)
         if coup_possible(g, c) == True:
@@ -144,6 +203,7 @@ def coup_aleatoire(g, j):
 def jeufinalbot():
     g=grille_vide()
     affiche(g)
+    c = 0
     j = random.randint(1,2)
     while True:
         if j == 2:
@@ -155,18 +215,20 @@ def jeufinalbot():
                 if c >= 1 and c <= 7:
                     if coup_possible(g, c) == True:
                         coupaccepte = True
+        l = 69
+        i = 0
+        while l == 69:
+            if g[i][c] == 0:
+                l = i
         jouer(g, j, c)
+        quatrevertic = vertic(g, j, l, c)
+        quatrehoriz = horiz(g, j, l, c)
+        quatreduag = diag(g, j, l, c)
         if victoire(g, j) == True:
-            affiche(g)
-            print("\n")
-            if j == 2:
-                return "Vous avez perdu"
-            else:
-                return "Vous avez gagné"
+            exit
         if match_nul(g) == True:
-            affiche(g)
             print("\n")
-            return "Match nul, rééssayez"
+            exit
         if j == 1:
             j = 2
         else:
