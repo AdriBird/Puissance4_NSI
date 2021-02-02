@@ -3,7 +3,7 @@
 #                                                                           #
 #                                                                           #
 #                                                                           #
-#                 Pour jouer, appuyer sur le bouton start                   #
+#                 Pour jouer, appuyer sur le bouton  play                   #
 #                                                                           #
 #                                                                           #
 #                                                                           #
@@ -15,11 +15,18 @@ import time
 
 
 def grille_vide():
+    '''
+    Fonction qui renvoie une grille vide.
+    '''
     g=[[0 for i in range(7)]for j in range(6)]
     return g
 
 
 def affiche(g):
+    '''
+    Fonction qui prend en argument la grille
+    et choisit l'affichage des pions en fonction du joueur.
+    '''
     for i in range(6):
         ligne=""
         for j in range(7):
@@ -35,6 +42,10 @@ def affiche(g):
 
 
 def coup_possible(g, c):
+    '''
+    Fonction qui prend en argument la grille et la colonne choisie
+    et sert à dire si un coup est possible ou pas.
+    '''
     veredict = False
     for i in range(5, -1, -1):
         if g[i][c] == 0:
@@ -44,6 +55,10 @@ def coup_possible(g, c):
 
 
 def jouer(g, j, c):
+    '''
+    Fonction qui prend en argument la grille, le joueur et la colonne choisie
+    et qui fait jouer un coup à ce joueur.
+    '''
     tour_fini=0
     while tour_fini == 0:
         if coup_possible(g, c) == True:
@@ -67,6 +82,10 @@ def jouer(g, j, c):
 
 
 def horiz(g, j, l, c):
+    '''
+    Fonction qui prend en argument la grille et le joueur qui joue
+    et vérifie s'il y a 4 symboles identiques alignés à l'horizontale.
+    '''
     verif_j1 = 0
     verif_j2 = 0
     for c in range(5):
@@ -87,6 +106,10 @@ def horiz(g, j, l, c):
 
 
 def vertic(g, j, l, c):
+    '''
+    Fonction qui prend en argumentla grille et le joueur qui joue
+    et vérifie s'il y a 4 symboles identiques alignés à la verticale.
+    '''
     verif_j1 = 0
     verif_j2 = 0
     for l in range(6):
@@ -109,6 +132,10 @@ def vertic(g, j, l, c):
 
 
 def victoire(g,j):
+    '''
+    Fonction qui prend en argument la grille et le joueur qui joue
+    et renvoie un message en cas de victoire d'un des joueurs.
+    '''
     if horiz(g,j,l,c)==True or vertic(g,j,l,c)==True or diag(g,j,l,c)==True:
         print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr.")
         return True
@@ -117,6 +144,10 @@ def victoire(g,j):
 
 
 def match_nul(g):
+    '''
+    Fonction qui prend en argument la grille
+    et renvoie un message s'il y a un match nul.
+    '''
     for m in range(7):
         if g[0][m]==0:
             return False
@@ -125,6 +156,10 @@ def match_nul(g):
 
 
 def coup_aleatoire(g, j):
+    '''
+    Fonction qui prend en argument la grille et le joueur qui joue
+    et choisit une colonne aléatoire pour que le bot la joue.
+    '''
     while True:
         c = random.randint(1,7)
         if coup_possible(g, c) == True:
@@ -138,6 +173,10 @@ def coup_aleatoire(g, j):
 
 
 def jeufinalbot():
+    '''
+    Fonction ou tu joues contre un bot. Genre vraiment.
+    EN COURS DE MODIFICATION.
+    '''
     grille_vide()
     affiche(g)
     j = random.randint(1,2)
