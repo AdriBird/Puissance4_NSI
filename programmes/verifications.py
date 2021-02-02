@@ -41,26 +41,41 @@ def horiz(g, j, l, c):
 
 
 
-##def diag(g, j, l, c):
-'''
+def diag(g, j, l, c):
+    '''
     En gros il faut faire deux boucles: la grande boucle elle agit sur les lignes et la deuxième boucle
     agit sur les colonnes, si l'index des colonnes est inferieur à 3 elle va être croissante et si elle est
     supérieur à 3 elle est décroissante et si elle est égale à 3 elle est les deux
-'''
-#    verif_j1 = 0
-#    verif_j2 = 0
-#    for i in range(5):
-#        for j in range(5):
-#            if g[j+i][j+i]
+    '''
+    verif_j = 0
+    diag_verif = [0][0]
+    if l < c:
+        diag_verif = g[0][c-l]
+        for i in range(len(g)-l):
+            if diag_verif[i][(c-l)+i] !=0:
+                verif_j += 1
+            else:
+                verif_j = 0
+    else:
+        diag_verif = g[l-c][0]
+        for i in range(len(g)-l):
+            if diag_verif[(l-c)+i][i] != 0:
+                verif_j += 1
+            else:
+                verif_j = 0
+
+
+
+
 
 
 g=[
-[0, 0, 0, 0, 0, 0, 0,],
-[0, 0, 0, 0, 0, 0, 0,],
-[0, 0, 0, 0, 0, 0, 0,],
-[0, 0, 0, 0, 0, 0, 0,],
-[0, 0, 0, 0, 0, 0, 0,],
-[0, 0, 0, 1, 1, 1, 1,],
+[2, 1, 1, 1, 2, 2, 1,],
+[2, 1, 2, 2, 1, 2, 1,],
+[2, 1, 2, 1, 2, 1, 2,],
+[2, 1, 2, 1, 2, 1, 2,],
+[1, 2, 1, 2, 2, 1, 1,],
+[1, 2, 2, 1, 1, 2, 2,],
 ]
 
 print(horiz(g, 2, 3, 5))
