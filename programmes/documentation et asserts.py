@@ -57,7 +57,7 @@ def coup_possible(g, c):
 def jouer(g, j, c):
     '''
     Fonction qui prend en argument la grille, le joueur et la colonne choisie
-    et qui fait jouer un coup à ce joueur.
+    et qui fait jouer un coup à ce joueur avec des effets qui transborde le pions ligne après ligne.
     '''
     tour_fini=0
     while tour_fini == 0:

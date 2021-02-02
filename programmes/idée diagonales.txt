@@ -1,0 +1,24 @@
+I.I.I.I.I.I.I
+I.I.I.I.I.IxI
+I.I.I.I.IxI.I
+I.I.I.IxI.I.I
+I.I.IxI.I.I.I
+I.IxI.I.I.I.I
+
+x=l
+y=c
+while g[x][y]==j
+	k+=1
+	x+=1
+	y+=1
+x=l
+y=c
+k-=1
+while g[x][y]==j
+	k+=1
+	x-=1
+	y-=1
+
+if k>=4
+	C'est gagné
+	
