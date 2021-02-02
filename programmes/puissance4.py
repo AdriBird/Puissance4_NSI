@@ -60,12 +60,14 @@ def jouer(g, j, c):
     et qui fait jouer un coup à ce joueur, en modifiant la grille g et affichant une animation de chute.
     '''    
     tour_fini=0
+    ligne = -1
     while tour_fini == 0:
         if coup_possible(g, c) == True:
             c-=1
             temp=0
             for l in range(6):
                 if g[l][c] == 0:
+                    ligne += 1
                     g[l][c] = j
                     if temp != 0:
                         g[temp+-1][c] = 0
@@ -74,11 +76,12 @@ def jouer(g, j, c):
                     time.sleep(0.3)
                 temp+=1
             tour_fini=1
-    print("\n")
     if j == 1:
-        j=2
+        j = 2
     else:
-        j=1
+        j = 1
+    print("\n")
+    return ligne
 
 
 def vertic(g, j, l, c):
@@ -113,62 +116,63 @@ def horiz(g, j, l, c):
     return False
 
 
-def horiz(g, j, l, c):
-    '''
-    Fonction qui prend en argument la grille et le joueur qui joue et vérifie dans tout le tableau 
-    s'il y a 4 symboles identiques alignés à l'horizontale et renvoie True si c'est le cas, sinon False.
-    '''
-    verif_j1 = 0
-    verif_j2 = 0
-    for l in range(6):
-        for c in range(7):
-            if g[l][c] == 1:
-                verif_j2 = 0
-                verif_j1 += 1
-            if g[l][c] == 2:
-                verif_j1 = 0
-                verif_j2 += 1
-            if g[l][c] == 0:
-                verif_j2 = 0
-                verif_j1 = 0
-            if verif_j1 == 4:
-                return True
-            if verif_j2 == 4:
-                return True
 
 
-def vertic(g, j, l, c):
-    verif_j1 = 0
-    verif_j2 = 0
-    for c in range(7):
-        for l in range(6):
-            if g[l][c] == 1:
-                verif_j2 = 0
-                verif_j1 += 1
-            if g[l][c] == 2:
-                verif_j1 = 0
-                verif_j2 += 1
-            if g[l][c] == 0:
-                verif_j2 = 0
-                verif_j1 = 0
-            if verif_j1 == 4:
-                return True
-            if verif_j2 == 4:
-                return True
+def diag(g, j, l, c):
+    allignement = 0
+    lcopie = l 
+    ccopie = c 
+    while lcopie <= 5 and lcopie >= 0 and ccopie <= 6 and ccopie >= 0:
+        if g[lcopie][ccopie] == j:
+            allignement += 1
+            lcopie += 1
+            ccopie += 1
+        else:
+            break
+    allignement -= 1
+    lcopie = l 
+    ccopie = c 
+    while lcopie <= 5 and lcopie >= 0 and ccopie <= 6 and ccopie >= 0:
+        if g[lcopie][ccopie] == j:
+            allignement += 1
+            lcopie -= 1
+            ccopie -= 1
+        else:
+            break
+    if allignement >= 4:
+        return True
+    allignement = 0
+    lcopie = l 
+    ccopie = c 
+    while lcopie <= 5 and lcopie >= 0 and ccopie <= 6 and ccopie >= 0:
+        if g[lcopie][ccopie] == j:
+            allignement += 1
+            lcopie += 1
+            ccopie -= 1
+        else:
+            break
+    allignement -= 1
+    lcopie = l 
+    ccopie = c 
+    while lcopie <= 5 and lcopie >= 0 and ccopie <= 6 and ccopie >= 0:
+        if g[lcopie][ccopie] == j:
+            allignement += 1
+            lcopie -= 1
+            ccopie += 1
+        else:
+            break
+    if allignement >= 4:
+        return True
     return False
-
-
 
 
 def victoire(g, j):
     '''
     Fonction qui renvoie un booléen si un joueur a gagné.
     '''
-    if quatrehoriz == True or quatrevertic == True or quatrediag == True:
-        print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
-        affiche(g)
-        return True
-    return False
+    print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
+    affiche(g)
+    return True
 
 
 def match_nul(g):
@@ -215,20 +219,14 @@ def jeufinalbot():
                 if c >= 1 and c <= 7:
                     if coup_possible(g, c) == True:
                         coupaccepte = True
-        l = 69
-        i = 0
-        while l == 69:
-            if g[i][c] == 0:
-                l = i
-        jouer(g, j, c)
-        quatrevertic = vertic(g, j, l, c)
-        quatrehoriz = horiz(g, j, l, c)
-        quatreduag = diag(g, j, l, c)
-        if victoire(g, j) == True:
-            exit
+        l = jouer(g, j, c)
+        c -= 1
+        if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
+            victoire(g, j)
+            return False
         if match_nul(g) == True:
             print("\n")
-            exit
+            return False
         if j == 1:
             j = 2
         else:
