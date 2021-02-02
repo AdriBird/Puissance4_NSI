@@ -35,6 +35,7 @@ def affiche(g):
 
 
 def coup_possible(g, c):
+    c -= 1
     veredict = False
     for i in range(5, -1, -1):
         if g[i][c] == 0:
@@ -109,9 +110,11 @@ def vertic(g, j, l, c):
 
 
 
-def victoire(g,j):
-    if horiz(g,j,l,c)==True or vertic(g,j,l,c)==True or diag(g,j,l,c)==True:
-        print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr.")
+def victoire(g, j):
+    l = 0
+    c = 0
+    if horiz(g, j, l, c)==True or vertic(g, j , l , c)==True:
+        print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
         return True
     else:
         return False
@@ -121,13 +124,13 @@ def match_nul(g):
     for m in range(7):
         if g[0][m]==0:
             return False
-    print("Match nul .Serrez vous la main mais en fait non parce que c'est pas très covid mdr.")
+    print("Match nul .Serrez vous la main mais en fait non parce que c'est pas très covid mdr. \n")
     return True
 
 
 def coup_aleatoire(g, j):
     while True:
-        c = random.randint(1,7)
+        c = random.randint(0, 6)
         if coup_possible(g, c) == True:
             return c
         if match_nul(g) == True:
@@ -142,27 +145,31 @@ def jeufinalbot():
     g=grille_vide()
     affiche(g)
     j = random.randint(1,2)
-    l = 0
     while True:
         if j == 2:
-            coup_possible(g, c)
+            c=coup_aleatoire(g, j)
         else:
             coupaccepte=False
             while coupaccepte == False:
-                c = int(input("Choisissez une colonne: "))
-                if coup_possible(g, c) == True:
-                    coupaccepte = True
+                c = int(input("Choisissez une colonne entre 1 et 7: "))
+                if c >= 1 and c <= 7:
+                    if coup_possible(g, c) == True:
+                        coupaccepte = True
         jouer(g, j, c)
-        if match_nul(g) == True:
-            affiche(g)
-            print("\n")
-            return "Match nul, rééssayez"
         if victoire(g, j) == True:
             affiche(g)
+            print("\n")
             if j == 2:
                 return "Vous avez perdu"
             else:
                 return "Vous avez gagné"
-
+        if match_nul(g) == True:
+            affiche(g)
+            print("\n")
+            return "Match nul, rééssayez"
+        if j == 1:
+            j = 2
+        else:
+            j = 1
 jeufinalbot()
         
