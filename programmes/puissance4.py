@@ -1,12 +1,6 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                           #
-#                                                                           #
-#                                                                           #
-#                                                                           #
-#                 Pour jouer, appuyer sur le bouton start                   #
-#                                                                           #
-#                                                                           #
-#                                                                           #
+#              Adrien Cazin    Léon Gard    Matthieu Gautherot              #
 #                                                                           #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -37,7 +31,7 @@ def affiche(g):
             if g[i][j] == 0:
                 ligne+="I "
             if g[i][j] == 1:
-                ligne+="\033[1;32;40mIx"
+                ligne+="Ix"
             if g[i][j] == 2:
                 ligne+="Io"
         ligne+="I"
@@ -281,11 +275,10 @@ def match_nul(g):
     for m in range(7):
         if g[0][m]==0:
             return False
-    print("Match nul. \n")
     return True
 
 g=[[1 for i in range(7)]for j in range(6)]
-assert match_nul(g) == True
+#assert match_nul(g) == True
 
 
 def coup_aleatoire(g, j):
@@ -306,13 +299,23 @@ def coup_aleatoire(g, j):
 
 
 def jeufinalbot():
+    nbjouers=int(input("Jouer contre un bot (1); Jouer à deux (2): "))
+
     g=grille_vide()
     affiche(g)
     c = 0
     j = random.randint(1,2)
     while True:
-        if j == 2:
-            c=coup_aleatoire(g, j)
+        if nbjouers == 1:
+            if j == 2:
+                c=coup_aleatoire(g, j)
+            else:
+                coupaccepte=False
+                while coupaccepte == False:
+                    c = int(input("Choisissez une colonne entre 1 et 7: "))
+                    if c >= 1 and c <= 7:
+                        if coup_possible(g, c) == True:
+                            coupaccepte = True
         else:
             coupaccepte=False
             while coupaccepte == False:
@@ -326,6 +329,7 @@ def jeufinalbot():
             victoire(g, j)
             return False
         if match_nul(g) == True:
+            print("Match nul. \n")
             print("\n")
             return False
         if j == 1:
