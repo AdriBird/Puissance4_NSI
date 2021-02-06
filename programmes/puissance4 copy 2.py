@@ -276,9 +276,6 @@ def match_nul(g):
     print("Match nul. \n")
     return True
 
-g=[[1 for i in range(7)]for j in range(6)]
-assert match_nul(g) == True
-
 
 def coup_aleatoire(g, j):
     '''
