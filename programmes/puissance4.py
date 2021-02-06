@@ -28,11 +28,14 @@ def affiche(g):
     Fonction qui prend en argument la grille
     et choisit l'affichage des pions en fonction du joueur.
     '''
+    for k in range(7):
+        print("", k+1, end="")
+    print()
     for i in range(6):
         ligne=""
         for j in range(7):
             if g[i][j] == 0:
-                ligne+="I."
+                ligne+="I "
             if g[i][j] == 1:
                 ligne+="Ix"
             if g[i][j] == 2:
@@ -171,7 +174,7 @@ def victoire(g, j):
     Fonction qui renvoie un booléen si un joueur a gagné.
     '''
     print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
-    affiche(g)
+    #affiche(g)
     return True
 
 
