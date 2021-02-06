@@ -53,7 +53,17 @@ def coup_possible(g, c):
         if g[i][c] == 0:
             return True
     return False
-
+g=[
+[0, 0, 0, 0, 0, 0, 1,],
+[0, 0, 0, 0, 0, 0, 1,],
+[0, 0, 0, 0, 0, 0, 1,],
+[0, 0, 0, 0, 1, 0, 1,],
+[0, 0, 0, 0, 1, 0, 1,],
+[0, 0, 0, 1, 1, 1, 1,],
+]
+assert coup_possible(g,7)==False
+assert coup_possible(g,5)==True
+assert coup_possible(g,1)==True
 
 def jouer(g, j, c):
     '''
@@ -116,7 +126,7 @@ def horiz(g, j, l, c):
             return True
     return False
 
-assert 
+##assert
 
 
 def diag(g, j, l, c):
@@ -232,5 +242,5 @@ def jeufinalbot():
             j = 2
         else:
             j = 1
-jeufinalbot()
+##jeufinalbot()
         
