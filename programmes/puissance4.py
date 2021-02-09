@@ -28,12 +28,12 @@ def affiche(g):
         ligne=""
         for j in range(7):
             if g[i][j] == 0:
-                ligne+="\033[1;37;48mI "
+                ligne+="\033[1;34;48mI "
             if g[i][j] == 1:
-                ligne+="\033[1;37;48mI\033[1;33;48m•"
+                ligne+="\033[1;34;48mI\033[1;33;48m•"
             if g[i][j] == 2:
-                ligne+="\033[1;37;48mI\033[1;31;48m•"
-        ligne+="\033[1;37;48mI"
+                ligne+="\033[1;34;48mI\033[1;31;48m•"
+        ligne+="\033[1;34;48mI"
         print(ligne)
     return "\nAffichage terminé\n"
 
@@ -268,7 +268,7 @@ def victoire(g, j):
         gagnant = "\033[1;33;48mjaune"
     if j == 2:
         gagnant = "\033[1;31;48mrouge"
-    print("le joueur ",gagnant," \033[1;37;48ma gagné.\n ")
+    print("\033[1;37;48mle joueur ",gagnant," \033[1;37;48ma gagné.\n ")
     #affiche(g)
     return True
 
