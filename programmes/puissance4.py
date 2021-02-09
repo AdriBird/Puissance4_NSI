@@ -355,6 +355,10 @@ def jeufinalbot():
                     victoiresrouges += 1
     print("\033[1;37;48mLe joueur rouge a gagné ", victoiresrouges, " fois")
     print("Le joueur jaune a gagné ", victoiresjaunes, " fois")
+    nb_match_nul=parties-victoiresjaunes-victoiresrouges
+    if nb_match_nul!=0:
+        print("Il y a eu ",nb_match_nul,"matchs nuls")
+
 jeufinalbot()
         
 
