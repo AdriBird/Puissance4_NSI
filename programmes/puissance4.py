@@ -319,14 +319,14 @@ def jeufinalbot():
             else:
                 coupaccepte=False
                 while coupaccepte == False:
-                    c = int(input("Choisissez une colonne entre 1 et 7: "))
+                    c = int(input("\033[1;37;48mChoisissez une colonne entre 1 et 7: "))
                     if c >= 1 and c <= 7:
                         if coup_possible(g, c) == True:
                             coupaccepte = True
         if nbjouers == 2:
             coupaccepte=False
             while coupaccepte == False:
-                c = int(input("Choisissez une colonne entre 1 et 7: "))
+                c = int(input("\033[1;37;48mChoisissez une colonne entre 1 et 7: "))
                 if c >= 1 and c <= 7:
                     if coup_possible(g, c) == True:
                         coupaccepte = True
