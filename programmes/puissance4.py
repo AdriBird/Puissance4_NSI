@@ -264,7 +264,11 @@ def victoire(g, j):
     '''
     Fonction qui renvoie un booléen si un joueur a gagné.
     '''
-    print("le joueur ",j," a gagné.\n ")
+    if j == 1:
+        gagnant = "\033[1;33;48mjaune"
+    if j == 2:
+        gagnant = "\033[1;31;48mrouge"
+    print("le joueur ",gagnant," \033[1;37;48ma gagné.\n ")
     #affiche(g)
     return True
 
