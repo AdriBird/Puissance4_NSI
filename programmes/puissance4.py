@@ -34,7 +34,7 @@ def affiche(g):
                 ligne+="\033[1;37;48mI\033[1;33;48mx"
             if g[i][j] == 2:
                 ligne+="\033[1;37;48mI\033[1;31;48mo"
-        ligne+="\033[1;37;40mI"
+        ligne+="\033[1;37;48mI"
         print(ligne)
     return "\nAffichage terminé\n"
 
@@ -315,13 +315,15 @@ def jeufinalbot():
                     if c >= 1 and c <= 7:
                         if coup_possible(g, c) == True:
                             coupaccepte = True
-        else:
+        if nbjouers == 2:
             coupaccepte=False
             while coupaccepte == False:
                 c = int(input("Choisissez une colonne entre 1 et 7: "))
                 if c >= 1 and c <= 7:
                     if coup_possible(g, c) == True:
                         coupaccepte = True
+        if nbjouers == 0:
+            c=coup_aleatoire(g, j)
         l = jouer(g, j, c)
         c -= 1
         if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
