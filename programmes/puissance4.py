@@ -31,7 +31,7 @@ def affiche(g):
             if g[i][j] == 0:
                 ligne+="\033[1;37;48mI "
             if g[i][j] == 1:
-                ligne+="\033[1;37;48mI\033[1;33;48mx"
+                ligne+="\033[1;37;48mI\033[1;33;48mo"
             if g[i][j] == 2:
                 ligne+="\033[1;37;48mI\033[1;31;48mo"
         ligne+="\033[1;37;48mI"
@@ -262,7 +262,7 @@ def victoire(g, j):
     '''
     Fonction qui renvoie un booléen si un joueur a gagné.
     '''
-    print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
+    print("le joueur ",j," a gagné.\n ")
     #affiche(g)
     return True
 
