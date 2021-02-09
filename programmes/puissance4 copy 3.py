@@ -1,11 +1,18 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                           #
-#              Adrien Cazin    Léon Gard    Matthieu Gautherot              #
+#                                                                           #
+#                                                                           #
+#                                                                           #
+#                 Pour jouer, appuyer sur le bouton start                   #
+#                                                                           #
+#                                                                           #
+#                                                                           #
 #                                                                           #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 import random
 import time
+from typing import Callable
 
 
 def grille_vide():
@@ -28,12 +35,12 @@ def affiche(g):
         ligne=""
         for j in range(7):
             if g[i][j] == 0:
-                ligne+="\033[1;34;48mI "
+                ligne+="\033[1;37;40mI "
             if g[i][j] == 1:
-                ligne+="\033[1;34;48mI\033[1;33;48m•"
+                ligne+="\033[1;37;40mI\033[1;33;40mx"
             if g[i][j] == 2:
-                ligne+="\033[1;34;48mI\033[1;31;48m•"
-        ligne+="\033[1;34;48mI"
+                ligne+="\033[1;37;40mI\033[1;31;40mo"
+        ligne+="I"
         print(ligne)
     return "\nAffichage terminé\n"
 
@@ -62,7 +69,7 @@ assert coup_possible(g,5)==True
 assert coup_possible(g,1)==True
 
 
-def jouer(g, j, c, anim):
+def jouer(g, j, c):
     '''
     Fonction qui prend en argument la grille, le joueur et la colonne choisie
     et qui fait jouer un coup à ce joueur, en modifiant la grille g et affichant une animation de chute.
@@ -79,19 +86,16 @@ def jouer(g, j, c, anim):
                     g[l][c] = j
                     if temp != 0:
                         g[temp+-1][c] = 0
-                    if anim == 1:
-                        print("\n")
-                        affiche(g)
-                        time.sleep(0.2)
+                    print("\n")
+                    affiche(g)
+                    time.sleep(0.3)
                 temp+=1
             tour_fini=1
-            if anim == 0:
-                print("\n")
-                affiche(g)
     if j == 1:
         j = 2
     else:
         j = 1
+    print("\n")
     return ligne
 
 
@@ -264,11 +268,7 @@ def victoire(g, j):
     '''
     Fonction qui renvoie un booléen si un joueur a gagné.
     '''
-    if j == 1:
-        gagnant = "\033[1;33;48mjaune"
-    if j == 2:
-        gagnant = "\033[1;31;48mrouge"
-    print("\033[1;37;48mle joueur ",gagnant," \033[1;37;48ma gagné.\n ")
+    print("le joueur ",j," a gagné. On peut tous sauter sur le vainqueur mais en fait non parce que c'est pas très covid mdr. \n ")
     #affiche(g)
     return True
 
@@ -281,10 +281,11 @@ def match_nul(g):
     for m in range(7):
         if g[0][m]==0:
             return False
+    print("Match nul. \n")
     return True
 
 g=[[1 for i in range(7)]for j in range(6)]
-#assert match_nul(g) == True
+assert match_nul(g) == True
 
 
 def coup_aleatoire(g, j):
@@ -305,57 +306,31 @@ def coup_aleatoire(g, j):
 
 
 def jeufinalbot():
-    victoiresrouges = 0
-    victoiresjaunes = 0
-    nbjouers=int(input("\033[1;37;48mJouer contre un bot (1); Jouer à deux (2): "))
-    animations=int(input("(Beta) Activer animations? Oui (1); Non (0): "))
-    parties = int(input("Combien de parties voulez vous jouer? "))
-    for i in range(parties):
-        g=grille_vide()
-        match_fini = 0
-        c = 0
-        affiche(g)
-        j = random.randint(1,2)
-        while match_fini == 0:
-            if nbjouers == 1:
-                if j == 2:
-                    c=coup_aleatoire(g, j)
-                else:
-                    coupaccepte=False
-                    while coupaccepte == False:
-                        c = int(input("\033[1;37;48mChoisissez une colonne entre 1 et 7: "))
-                        if c >= 1 and c <= 7:
-                            if coup_possible(g, c) == True:
-                                coupaccepte = True
-            if nbjouers == 2:
-                coupaccepte=False
-                while coupaccepte == False:
-                    c = int(input("\033[1;37;48mChoisissez une colonne entre 1 et 7: "))
-                    if c >= 1 and c <= 7:
-                        if coup_possible(g, c) == True:
-                            coupaccepte = True
-            if nbjouers == 0:
-                c=coup_aleatoire(g, j)
-            l = jouer(g, j, c, animations)
-            c -= 1
-            if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
-                victoire(g, j)
-                match_fini = True
-            if match_nul(g) == True and match_fini == False:
-                print("\033[1;37;48mMatch nul. \n")
-                print("\n")
-                match_fini = True
-            if j == 1:
-                j = 2
-                if match_fini == True and match_nul(g) == False:
-                    victoiresjaunes += 1
-            else:
-                j = 1
-                if match_fini == True and match_nul(g) == False:
-                    victoiresrouges += 1
-    print("\033[1;37;48mLe joueur rouge a gagné ", victoiresrouges, " fois")
-    print("Le joueur jaune a gagné ", victoiresjaunes, " fois")
+    g=grille_vide()
+    affiche(g)
+    c = 0
+    j = random.randint(1,2)
+    while True:
+        if j == 2:
+            c=coup_aleatoire(g, j)
+        else:
+            coupaccepte=False
+            while coupaccepte == False:
+                c = int(input("Choisissez une colonne entre 1 et 7: "))
+                if c >= 1 and c <= 7:
+                    if coup_possible(g, c) == True:
+                        coupaccepte = True
+        l = jouer(g, j, c)
+        c -= 1
+        if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
+            victoire(g, j)
+            return False
+        if match_nul(g) == True:
+            print("\n")
+            return False
+        if j == 1:
+            j = 2
+        else:
+            j = 1
 jeufinalbot()
-        
-
         

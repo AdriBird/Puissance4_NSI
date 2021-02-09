@@ -307,8 +307,9 @@ def jeufinalbot():
     victoiresrouges = 0
     victoiresjaunes = 0
     nbjouers=int(input("\033[1;37;48mJouer contre un bot (1); Jouer à deux (2): "))
-    animations=int(input("\033[1;37;48m(Beta) Activer animations? Oui (1); Non (0): "))
-    for i in range(100):
+    animations=int(input("(Beta) Activer animations? Oui (1); Non (0): "))
+    parties = int(input("Combien de parties voulez vous jouer? "))
+    for i in range(parties):
         g=grille_vide()
         match_fini = 0
         c = 0
