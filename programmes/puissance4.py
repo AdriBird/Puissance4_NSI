@@ -29,12 +29,12 @@ def affiche(g):
         ligne=""
         for j in range(7):
             if g[i][j] == 0:
-                ligne+="I "
+                ligne+="\033[1;37;48mI "
             if g[i][j] == 1:
-                ligne+="Ix"
+                ligne+="\033[1;37;48mI\033[1;33;48mx"
             if g[i][j] == 2:
-                ligne+="Io"
-        ligne+="I"
+                ligne+="\033[1;37;48mI\033[1;31;48mo"
+        ligne+="\033[1;37;40mI"
         print(ligne)
     return "\nAffichage terminé\n"
 
@@ -299,8 +299,7 @@ def coup_aleatoire(g, j):
 
 
 def jeufinalbot():
-    nbjouers=int(input("Jouer contre un bot (1); Jouer à deux (2): "))
-
+    nbjouers=int(input("\033[1;37;48mJouer contre un bot (1); Jouer à deux (2): "))
     g=grille_vide()
     affiche(g)
     c = 0
