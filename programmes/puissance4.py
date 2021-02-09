@@ -63,7 +63,7 @@ assert coup_possible(g,5)==True
 assert coup_possible(g,1)==True
 
 
-def jouer(g, j, c):
+def jouer(g, j, c, anim):
     '''
     Fonction qui prend en argument la grille, le joueur et la colonne choisie
     et qui fait jouer un coup à ce joueur, en modifiant la grille g et affichant une animation de chute.
@@ -80,11 +80,15 @@ def jouer(g, j, c):
                     g[l][c] = j
                     if temp != 0:
                         g[temp+-1][c] = 0
-                    print("\n")
-                    affiche(g)
-                    time.sleep(0.3)
+                    if anim == 1:
+                        print("\n")
+                        affiche(g)
+                        time.sleep(0.2)
                 temp+=1
             tour_fini=1
+            if anim == 0:
+                print("\n")
+                affiche(g)
     if j == 1:
         j = 2
     else:
@@ -299,6 +303,7 @@ def coup_aleatoire(g, j):
 
 def jeufinalbot():
     nbjouers=int(input("\033[1;37;48mJouer contre un bot (1); Jouer à deux (2): "))
+    animations=int(input("\033[1;37;48mActiver animations? Oui (1); Non (0): "))
     g=grille_vide()
     affiche(g)
     c = 0
@@ -306,6 +311,7 @@ def jeufinalbot():
     while True:
         if nbjouers == 1:
             if j == 2:
+                time.sleep(1)
                 c=coup_aleatoire(g, j)
             else:
                 coupaccepte=False
@@ -323,8 +329,8 @@ def jeufinalbot():
                         coupaccepte = True
         if nbjouers == 0:
             c=coup_aleatoire(g, j)
-            time.sleep(0.5)
-        l = jouer(g, j, c)
+            time.sleep(1)
+        l = jouer(g, j, c, animations)
         c -= 1
         if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
             victoire(g, j)
