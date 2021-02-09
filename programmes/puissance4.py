@@ -320,6 +320,7 @@ def jeufinalbot():
             if nbjouers == 1:
                 if j == 2:
                     c=coup_aleatoire(g, j)
+                    time.sleep(1)
                 else:
                     coupaccepte=False
                     while coupaccepte == False:
@@ -336,6 +337,7 @@ def jeufinalbot():
                             coupaccepte = True
             if nbjouers == 0:
                 c=coup_aleatoire(g, j)
+                time.sleep(1)
             l = jouer(g, j, c, animations)
             c -= 1
             if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
