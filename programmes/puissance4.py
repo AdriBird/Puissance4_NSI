@@ -31,9 +31,9 @@ def affiche(g):
             if g[i][j] == 0:
                 ligne+="\033[1;37;48mI "
             if g[i][j] == 1:
-                ligne+="\033[1;37;48mI\033[1;33;48mo"
+                ligne+="\033[1;37;48mI\033[1;33;48m•"
             if g[i][j] == 2:
-                ligne+="\033[1;37;48mI\033[1;31;48mo"
+                ligne+="\033[1;37;48mI\033[1;31;48m•"
         ligne+="\033[1;37;48mI"
         print(ligne)
     return "\nAffichage terminé\n"
@@ -89,7 +89,6 @@ def jouer(g, j, c):
         j = 2
     else:
         j = 1
-    print("\n")
     return ligne
 
 
@@ -324,6 +323,7 @@ def jeufinalbot():
                         coupaccepte = True
         if nbjouers == 0:
             c=coup_aleatoire(g, j)
+            time.sleep(0.5)
         l = jouer(g, j, c)
         c -= 1
         if horiz(g, j, l, c) == True or vertic(g, j, l, c) == True or diag(g, j, l, c) == True:
