@@ -22,7 +22,7 @@ def affiche(g):
     et choisit l'affichage des pions en fonction du joueur.
     '''
     for k in range(7):
-        print("", k+1, end="")
+        print("\033[1;37;48m", k+1, end="")
     print()
     for i in range(6):
         ligne=""
@@ -355,8 +355,8 @@ def jeufinalbot():
                 j = 1
                 if match_fini == True and match_nul(g) == False:
                     victoiresrouges += 1
-    print("\033[1;37;48mLe joueur rouge a gagné ", victoiresrouges, " fois")
-    print("Le joueur jaune a gagné ", victoiresjaunes, " fois")
+    print("\033[1;37;48mLe joueur \033[1;31;48mrouge \033[1;37;48ma gagné ", victoiresrouges, " fois")
+    print("Le joueur \033[1;33;48mjaune \033[1;37;48ma gagné ", victoiresjaunes, " fois")
     nb_match_nul=parties-victoiresjaunes-victoiresrouges
     if nb_match_nul!=0:
         print("Il y a eu ",nb_match_nul,"matchs nuls")
