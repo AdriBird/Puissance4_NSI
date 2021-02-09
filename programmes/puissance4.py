@@ -6,7 +6,6 @@
 
 import random
 import time
-from typing import Callable
 
 
 def grille_vide():
@@ -303,7 +302,7 @@ def coup_aleatoire(g, j):
 
 def jeufinalbot():
     nbjouers=int(input("\033[1;37;48mJouer contre un bot (1); Jouer à deux (2): "))
-    animations=int(input("\033[1;37;48mActiver animations? Oui (1); Non (0): "))
+    animations=int(input("\033[1;37;48m(Beta) Activer animations? Oui (1); Non (0): "))
     g=grille_vide()
     affiche(g)
     c = 0
