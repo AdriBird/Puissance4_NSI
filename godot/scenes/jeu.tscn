@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://sprite/grille.PNG" type="Texture" id=1]
-[ext_resource path="res://scenes/pion_j2.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprite/Down-Arrow-PNG-Photos_hover.png" type="Texture" id=3]
 [ext_resource path="res://sprite/Down-Arrow-PNG-Photos.png" type="Texture" id=4]
 [ext_resource path="res://sprite/Down-Arrow-PNG-Photos_pressed.png" type="Texture" id=5]
@@ -163,9 +162,4 @@ texture_hover = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="pion_j2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 615.102, 616.191 )
-
-[node name="pion_j3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 615.102, 151.068 )
+[connection signal="pressed" from="boutons/col1" to="." method="_on_col1_pressed"]

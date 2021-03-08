@@ -1,8 +1,13 @@
 extends RigidBody2D
 
+func _ready():
+	self.position.y = 140
+	self.position.x = 320
+
 func _process(delta):
+	print(get_linear_velocity().y)
 #	print(get_linear_velocity().y)
-	if get_linear_velocity().y <= 2 and get_linear_velocity().y >= -2:
+	if get_linear_velocity().y <= 20 and get_linear_velocity().y >= -20:
 		if $verif_velocity.time_left == 0:
 			$verif_velocity.set_wait_time(1)
 			$verif_velocity.start()
