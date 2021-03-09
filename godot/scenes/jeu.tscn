@@ -163,3 +163,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="boutons/col1" to="." method="_on_col1_pressed"]
+[connection signal="pressed" from="boutons/col2" to="." method="_on_col2_pressed"]
+[connection signal="pressed" from="boutons/col3" to="." method="_on_col3_pressed"]
+[connection signal="pressed" from="boutons/col4" to="." method="_on_col4_pressed"]
+[connection signal="pressed" from="boutons/col5" to="." method="_on_col5_pressed"]
+[connection signal="pressed" from="boutons/col6" to="." method="_on_col6_pressed"]
+[connection signal="pressed" from="boutons/col7" to="." method="_on_col7_pressed"]

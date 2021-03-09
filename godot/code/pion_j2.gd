@@ -2,9 +2,10 @@ extends RigidBody2D
 
 func _ready():
 	self.position.y = 140
-	self.position.x = 320
-
+	self.position.x = Global.posi_pion
+	
 func _process(delta):
+	self.position.x = Global.posi_pion
 	print(get_linear_velocity().y)
 #	print(get_linear_velocity().y)
 	if get_linear_velocity().y <= 20 and get_linear_velocity().y >= -20:

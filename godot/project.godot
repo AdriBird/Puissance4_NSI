@@ -19,6 +19,10 @@ config/name="Puissance4"
 run/main_scene="res://scenes/jeu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://code/global.gd"
+
 [gdnative]
 
 singletons=[ "res://pythonscript.gdnlib" ]
