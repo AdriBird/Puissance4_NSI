@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://sprite/grille.PNG" type="Texture" id=1]
+[ext_resource path="res://code/col6.gd" type="Script" id=2]
 [ext_resource path="res://sprite/Down-Arrow-PNG-Photos_hover.png" type="Texture" id=3]
 [ext_resource path="res://sprite/Down-Arrow-PNG-Photos.png" type="Texture" id=4]
 [ext_resource path="res://sprite/Down-Arrow-PNG-Photos_pressed.png" type="Texture" id=5]
 [ext_resource path="res://code/jeu.gd" type="Script" id=6]
+[ext_resource path="res://code/col1.gd" type="Script" id=7]
+[ext_resource path="res://code/col5.gd" type="Script" id=8]
+[ext_resource path="res://code/col7.gd" type="Script" id=9]
+[ext_resource path="res://code/col3.gd" type="Script" id=10]
+[ext_resource path="res://code/col4.gd" type="Script" id=11]
+[ext_resource path="res://code/col2.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 350, 10 )
@@ -81,6 +88,7 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,6 +102,7 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -107,6 +116,7 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,6 +130,7 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -133,6 +144,7 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,6 +158,7 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -159,13 +172,15 @@ rect_scale = Vector2( 0.035, 0.035 )
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 texture_hover = ExtResource( 3 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="boutons/col1" to="." method="_on_col1_pressed"]
-[connection signal="pressed" from="boutons/col2" to="." method="_on_col2_pressed"]
-[connection signal="pressed" from="boutons/col3" to="." method="_on_col3_pressed"]
-[connection signal="pressed" from="boutons/col4" to="." method="_on_col4_pressed"]
-[connection signal="pressed" from="boutons/col5" to="." method="_on_col5_pressed"]
-[connection signal="pressed" from="boutons/col6" to="." method="_on_col6_pressed"]
-[connection signal="pressed" from="boutons/col7" to="." method="_on_col7_pressed"]
+[connection signal="pos" from="boutons/col1" to="." method="_on_col1_pos"]
+[connection signal="pressed" from="boutons/col1" to="boutons/col1" method="_on_col1_pressed"]
+[connection signal="pressed" from="boutons/col2" to="boutons/col2" method="_on_col2_pressed"]
+[connection signal="pressed" from="boutons/col3" to="boutons/col3" method="_on_col3_pressed"]
+[connection signal="pressed" from="boutons/col4" to="boutons/col4" method="_on_col4_pressed"]
+[connection signal="pressed" from="boutons/col5" to="boutons/col5" method="_on_col5_pressed"]
+[connection signal="pressed" from="boutons/col6" to="boutons/col6" method="_on_col6_pressed"]
+[connection signal="pressed" from="boutons/col7" to="boutons/col7" method="_on_col7_pressed"]

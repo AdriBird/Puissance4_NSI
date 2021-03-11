@@ -1,12 +1,10 @@
 extends RigidBody2D
 
-func _ready():
-	self.position.y = 140
-	self.position.x = Global.posi_pion
+
 	
 func _process(delta):
-	self.position.x = Global.posi_pion
-	print(get_linear_velocity().y)
+	print(self.position.y)
+#	self.position.x = Global.posi_pion
 #	print(get_linear_velocity().y)
 	if get_linear_velocity().y <= 20 and get_linear_velocity().y >= -20:
 		if $verif_velocity.time_left == 0:
@@ -18,6 +16,10 @@ func _process(delta):
 		#print("timer arrêté")
 		$verif_velocity.stop()
 
+func start(pos_pion):
+	print("ça marche")
+	self.position.y = 140
+	self.position.x = pos_pion
 
 func _on_verif_velocity_timeout():
 #	if get_linear_velocity().y <= 1 and get_linear_velocity().y >= -1:
