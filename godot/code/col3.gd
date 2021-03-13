@@ -18,6 +18,6 @@ func _ready():
 
 func _on_col3_pressed():
 	var pion_pawn = loadpion.instance()
-	var pos_pion = self.rect_position.x
+	var pos_pion = self.rect_global_position
 	pion_pawn.start(pos_pion)
 	add_child(pion_pawn)

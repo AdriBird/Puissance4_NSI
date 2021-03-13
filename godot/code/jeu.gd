@@ -2,6 +2,8 @@ extends Node2D
 
 #var loadpion = load("res://scenes/pion_j2.tscn")
 
+var couleur_alt = 0
+
 func _ready():
 	pass
 
@@ -48,10 +50,10 @@ func _ready():
 #	#get_node("pion_j2").position.x = get_node("boutons/col7").rect_position.x + 30
 
 
-func _on_col1_pos():
-	print("ok1")
-#	var timer = Timer.new()
-#	timer.set_wait_time(1)
-	yield(get_tree().create_timer(0.1), "timeout")
-	print("ok2")
-	get_node("boutons/col1").rect_position.x -= 30
+#func _on_col1_pos():
+#	print("ok1")
+##	var timer = Timer.new()
+##	timer.set_wait_time(1)
+#	yield(get_tree().create_timer(0.1), "timeout")
+#	print("ok2")
+#	get_node("boutons/col1").rect_position.x -= 30

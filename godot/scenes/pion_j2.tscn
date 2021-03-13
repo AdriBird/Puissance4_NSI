@@ -10,6 +10,7 @@ bounce = 0.25
 radius = 40.0
 
 [node name="pion_j2" type="RigidBody2D"]
+modulate = Color( 0.560784, 0, 0.980392, 1 )
 physics_material_override = SubResource( 1 )
 gravity_scale = 8.0
 contacts_reported = 1
